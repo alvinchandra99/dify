@@ -310,6 +310,9 @@ services:
     networks:
       - ssrf_proxy_network
       - default
+    ports:
+      - '${DIFY_PORT:-5001}:${DIFY_PORT:-50001}'
+
 
   # worker service
   # The Celery worker for processing the queue.
@@ -342,6 +345,8 @@ services:
       NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-0}
       TEXT_GENERATION_TIMEOUT_MS: ${TEXT_GENERATION_TIMEOUT_MS:-60000}
       CSP_WHITELIST: ${CSP_WHITELIST:-}
+    ports:
+      - '3000:3000'
 
   # The postgres database.
   db:
